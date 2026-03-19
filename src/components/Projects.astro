@@ -1,0 +1,47 @@
+---
+// src/components/Projects.astro
+import { PROJECTS, PROJECTS_DESCRIPTION } from '../data/projects.js';
+import ProjectCard from './section-cards/ProjectCard.astro';
+import SysCarousel from './system/SysCarousel.astro';
+import HardwareNode from './ui/HardwareNode.astro'; 
+---
+
+<section id="projects" class="flex flex-col w-full scroll-mt-24 mb-16 deploy-hidden">
+  
+  {/* SECTION HEADER */}
+  <div class="flex items-center mb-4 w-full">
+    
+    <div class="relative flex items-center">
+      {/* The wire shooting left to the main 'bus' */}
+      <div class="trace-connector hidden lg:block z-0"></div>
+      
+      {/* HARDWARE NODE DESIGN */}
+      <HardwareNode class="text-telemetry hidden lg:block relative z-10 mr-4 bg-void" />
+      
+      {/* Section Title */}
+      <h2 class="text-2xl font-bold tracking-tight uppercase glitch-hover">PROJECTS</h2>
+    </div>
+
+    {/* Right-side metadata */}
+    <div class="h-[1px] flex-grow bg-industrial ml-4"></div>
+    <p class="font-mono text-sm text-text-secondary uppercase ml-4">
+      Deployments_v2.0
+    </p>
+    
+  </div>
+
+  {/* DYNAMIC CONTEXT PARAGRAPH */}
+  <p class="text-text-secondary leading-relaxed mb-8 w-full">
+    {PROJECTS_DESCRIPTION}
+  </p>
+
+  {/* CAROUSEL */}
+  <SysCarousel>
+    {PROJECTS.map((project) => (
+      <div class="w-full md:w-[85%] flex-shrink-0 snap-center flex flex-col h-full">
+        <ProjectCard project={project} />
+      </div>
+    ))}
+  </SysCarousel>
+
+</section>

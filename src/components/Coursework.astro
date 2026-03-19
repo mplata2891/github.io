@@ -1,0 +1,71 @@
+---
+// src/components/Coursework.astro
+import { COURSEWORK, COURSEWORK_DESCRIPTION } from '../data/coursework.js';
+
+// IMPORT THE HARDWARE NODE
+import HardwareNode from './ui/HardwareNode.astro';
+---
+
+<section id="coursework" class="flex flex-col w-full scroll-mt-24 mb-16 deploy-hidden">
+
+  {/* SECTION HEADER */}
+  <div class="flex items-center mb-4 w-full">
+    
+    <div class="relative flex items-center">
+      {/* The wire shooting left to the main bus */}
+      <div class="trace-connector hidden lg:block z-0"></div>
+      
+      {/* Hardware Node (Purple Accent) */}
+      <HardwareNode class="text-accent hidden lg:block relative z-10 mr-4 bg-void" />
+      
+      {/* Chakra Petch for the heavy section title */}
+      <h2 class="text-2xl font-display font-bold tracking-tight uppercase glitch-hover text-text-primary">
+        THEORY_LOGS
+      </h2>
+    </div>
+
+    {/* Right-side metadata */}
+    <div class="h-[1px] flex-grow bg-industrial ml-4"></div>
+    <p class="font-mono text-sm text-text-secondary uppercase ml-4">
+      Instruction_Set_v3.0
+    </p>
+    
+  </div>
+
+  {/* DYNAMIC CONTEXT PARAGRAPH */}
+  <p class="font-sans text-text-secondary leading-relaxed mb-8 w-full">
+    {COURSEWORK_DESCRIPTION}
+  </p>
+
+  {/* THE DATA GRID */}
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    {COURSEWORK.map((section) => (
+      <div class="border border-industrial bg-surface rounded-sm p-6 relative group hover:border-accent transition-all duration-300 overflow-hidden">
+        
+        {/* Subtle background glow on hover */}
+        <div class="absolute inset-0 bg-accent/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
+
+        {/* CLUSTER TITLE */}
+        <h3 class="font-mono text-sm text-accent mb-4 border-b border-industrial/50 pb-3 relative z-10 uppercase tracking-widest">
+          // {section.cluster}
+        </h3>
+        
+        {/* COURSE LIST */}
+        <ul class="flex flex-col gap-3 relative z-10">
+          {section.logs.map((log) => (
+            <li class="flex items-start gap-2 group/item">
+              <span class="font-mono text-industrial group-hover/item:text-accent transition-colors mt-0.5 text-xs">
+                {">>"}
+              </span>
+              <span class="font-sans text-sm text-text-primary group-hover/item:text-text-primary transition-colors leading-tight">
+                {log}
+              </span>
+            </li>
+          ))}
+        </ul>
+
+      </div>
+    ))}
+  </div>
+
+</section>

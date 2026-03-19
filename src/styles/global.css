@@ -1,0 +1,132 @@
+@import "tailwindcss";
+
+@theme {
+  /* Core Surfaces */
+  --color-void: #0C0C0F;
+  --color-surface: #0A0A0A;
+  --color-surface-highlight: #121212;
+  
+  /* Text Colors */
+  --color-text-primary: #F3F3F0;
+  --color-text-secondary: #A5A5A5;
+
+  /* purple accents */
+  --color-accent: #9D4EDD; 
+  --color-accent-hover: #C77DFF;
+
+  /* Functional Palette */
+  --color-phosphor: #00B32D;      /* Matrix/Terminal Green - System Success */
+  --color-critical: #FF3131;      /* Industrial Red - Error/Warning */
+  --color-telemetry: #004958;     /* Data/Observation Blue - Low-level status */
+  --color-alert: #FFB703;         /* Amber/Yellow - High Priority/Booting */
+
+  /* Fonts */
+  --font-sans: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-display: 'Chakra Petch', sans-serif; 
+
+  /* Borders */
+  --color-industrial: rgba(255, 255, 255, 0.1);
+
+  /* Sharp Corners */
+  --radius-none: 0px;
+  --radius-sm: 4px;
+  --radius-DEFAULT: 6px;
+
+  /* === SYSTEM ANIMATIONS === */
+  --animate-blink: blink 1s step-end infinite;
+  
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+}
+
+  /* === ATMOSPHERIC FX === */
+.crt-scanlines {
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 0) 50%,
+    rgba(0, 0, 0, 0.25) 50%,
+    rgba(0, 0, 0, 0.25)
+  );
+  background-size: 100% 4px;
+  pointer-events: none; /* Ensures users can still click links underneath */
+  z-index: 9999;        /* Keeps the glass strictly on top */
+}
+
+/* === INTERACTIVE FX === */
+.glitch-hover {
+  display: inline-block; /* ensures transforms apply correctly */
+}
+
+/* When hovered, it runs 'glitch-burst' exactly ONE time.
+  It takes 0.3 seconds, and 'forwards' ensures it stays on the final clean frame.
+*/
+.glitch-hover:hover {
+  animation: glitch-burst 0.3s linear forwards;
+}
+
+@keyframes glitch-burst {
+  0% {
+    text-shadow: none;
+    transform: translate(0, 0);
+  }
+  20% {
+    text-shadow: 2px 0px 0px var(--color-critical), -2px 0px 0px var(--color-telemetry);
+    transform: translate(-2px, 1px);
+  }
+  40% {
+    text-shadow: -2px 0px 0px var(--color-critical), 2px 0px 0px var(--color-telemetry);
+    transform: translate(2px, -1px);
+  }
+  60% {
+    text-shadow: 2px 0px 0px var(--color-critical), -2px 0px 0px var(--color-telemetry);
+    transform: translate(-1px, -2px);
+  }
+  80% {
+    text-shadow: -1px 0px 0px var(--color-critical), 1px 0px 0px var(--color-telemetry);
+    transform: translate(1px, 2px);
+  }
+  100% {
+    text-shadow: none;
+    transform: translate(0, 0); /* System stabilizes */
+  }
+}
+
+/* === TACTICAL DEPLOYMENT (SCROLL REVEALS) === */
+.deploy-hidden {
+  opacity: 0;
+  transform: translateY(40px); /* Starts slightly lower */
+  /* cubic-bezier creates the fast-snap */
+  transition: opacity 0.6s ease-out, transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+  will-change: opacity, transform;
+}
+
+.deploy-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* === THE HARDWARE HANDSHAKE (HORIZONTAL TRACES) === */
+.trace-connector {
+  position: absolute;
+  right: 100%;       /* anchors it to the left side of header */
+  margin-right: 1rem; /* small gap between the text and the wire */
+  top: 50%;
+  height: 2px;
+  width: 50vw;       /* long enough to reach the vertical line on the left edge */
+  background-color: var(--color-telemetry);
+  
+  transform-origin: right;
+  transform: scaleX(0); /* hidden by default */
+  
+  /* The 0.4s delay ensures it waits for the section to snap up FIRST */
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.4s;
+}
+
+/* When the parent section deploys, shoot the wire out */
+.deploy-visible .trace-connector {
+  transform: scaleX(1);
+}

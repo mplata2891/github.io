@@ -1,0 +1,11 @@
+---
+// src/components/ui/HardwareNode.astro
+const { class: className } = Astro.props;
+---
+
+<svg width="16" height="16" viewBox="0 0 16 16" fill="none" class={className}>
+  {/* Outer technical dashed ring */}
+  <circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5" stroke-dasharray="2 2"/>
+  {/* Inner solid data point */}
+  <circle cx="8" cy="8" r="3" fill="currentColor"/>
+</svg>

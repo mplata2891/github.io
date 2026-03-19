@@ -1,0 +1,168 @@
+---
+// src/components/section-cards/ProjectCard.astro
+import { Code } from 'astro:components';
+const { project } = Astro.props;
+
+const textureUrl = 
+  "https://www.transparenttextures.com/patterns/carbon-fibre.png";
+
+// Style Abstractions
+const baseCardStyle = [
+  "border border-industrial p-8 rounded-sm group relative flex flex-col",
+  "hover:border-accent transition-all duration-300 overflow-hidden bg-surface",
+  project.span // Injects md:col-span-2 or col-span-1 dynamically
+].join(" ");
+
+const categoryStyle = [
+  "font-mono text-sm text-accent tracking-widest uppercase"
+].join(" ");
+
+const statusStyle = [
+  "font-mono text-xs text-text-primary bg-industrial/20 px-2 py-1 rounded-sm border border-industrial uppercase"
+].join(" ");
+
+// DISPLAY FONT (Chakra Petch) for the heavy project title
+const titleStyle = [
+  "text-2xl font-display font-bold tracking-wide mb-2 text-text-primary transition-colors",
+  "group-hover:text-accent"
+].join(" ");
+---
+
+<div class={baseCardStyle}>
+  
+  {/* The Cyberpunk Carbon Fiber Texture Overlay */}
+  <div 
+    class="absolute inset-0 opacity-[0.03] pointer-events-none"
+    style={`background-image: url('${textureUrl}')`}
+  ></div>
+
+  <div class="relative z-10 flex flex-col h-full">
+    
+    {/* --- HEADER --- */}
+    <div class="flex justify-between items-start mb-6">
+      <div>
+        <p class={categoryStyle}>{project.category}</p>
+      </div>
+      <div class="flex items-center gap-3">
+        <span class={statusStyle}>{project.status}</span>
+        {/* FUNCTIONAL: Phosphor Green indicating an Active/Deployed System */}
+        <div class="h-1.5 w-1.5 bg-phosphor rounded-full animate-pulse shadow-[0_0_8px_var(--color-phosphor)]"></div>
+      </div>
+    </div>
+
+    {/* --- TITLE & ROLE --- */}
+    <h3 class={titleStyle}>{project.title}</h3>
+    <p class="font-mono text-sm text-accent mb-6">
+      >> ROLE: {project.role}
+    </p>
+    
+    {/* --- BODY --- */}
+    <div class="flex-grow flex flex-col gap-6">
+      
+      <div>
+        <h4 class="font-mono text-sm text-text-secondary mb-2">// SYS_DESCRIPTION</h4>
+        {/* SANS FONT (Inter) for maximum readability */}
+        <p class="font-sans text-text-primary leading-relaxed text-sm">
+          {project.description}
+        </p>
+      </div>
+
+      <div>
+        <h4 class="font-mono text-sm text-text-secondary mb-2">// MEASURABLE_IMPACT</h4>
+        <p class="font-sans text-text-primary leading-relaxed text-sm">
+          {project.impact}
+        </p>
+      </div>
+
+      {/* --- SUBSYSTEMS ACCORDION --- */}
+      {project.subsystems && (
+        <div class="flex flex-col gap-2 mt-4">
+          <h4 class="font-mono text-sm text-text-secondary mb-2">// TECHNICAL_SUBSYSTEMS</h4>
+          
+          {project.subsystems.map((sub) => (
+            <details class="border border-industrial bg-void rounded-sm group/accordion overflow-hidden">
+              <summary class="font-mono text-xs text-text-primary px-4 py-3 cursor-pointer select-none hover:text-accent hover:bg-surface-highlight transition-colors flex justify-between items-center">
+                <span>[+] {sub.name}</span>
+              </summary>
+              
+              <div class="p-4 border-t border-industrial flex flex-col gap-4 bg-surface/50">
+                <p class="font-sans text-sm text-text-secondary leading-relaxed">
+                  {sub.description}
+                </p>
+                
+                {/* Embedded Code Block */}
+                <div class="bg-[#282a36] p-4 rounded-sm border border-industrial max-h-64 overflow-y-auto">
+                  <div class="font-mono text-xs [&>pre]:!bg-transparent">
+                    <Code code={sub.code} lang={sub.lang} theme="dracula" />
+                  </div>
+                </div>
+              </div>
+            </details>
+          ))}
+        </div>
+      )}
+
+      {/* Tags */}
+      <div class="flex flex-wrap gap-2 mt-auto pt-6">
+        {project.tags.map((tag) => (
+          <span class="font-mono text-xs text-text-secondary bg-surface-highlight border border-industrial/50 px-2 py-1 rounded-sm">
+            #{tag}
+          </span>
+        ))}
+      </div>
+    </div>
+    
+    {/* --- DOCUMENTATION DIRECTORY --- */}
+    {project.documents && (
+      <div class="mt-8 pt-6 border-t border-industrial flex flex-col gap-4">
+        <h4 class="font-mono text-sm text-text-secondary">// ATTACHED_ASSETS</h4>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          {project.documents.map((doc) => (
+            <a 
+              href={doc.url} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              class="flex flex-col p-3 border border-industrial bg-surface-highlight hover:border-accent hover:bg-accent/5 transition-colors group/doc rounded-sm"
+            >
+              <div class="flex justify-between items-start mb-1">
+                <span class={`font-mono text-[10px] px-1.5 py-0.5 rounded-sm border ${doc.type === 'OFFICIAL_REPORT' ? 'border-accent/50 text-accent' : 'border-text-secondary/50 text-text-secondary'}`}>
+                  {doc.type}
+                </span>
+                <span class="text-text-secondary group-hover/doc:text-accent transition-colors">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+                </span>
+              </div>
+              {/* SANS FONT (Inter) for the readable document title */}
+              <span class="font-sans text-sm font-semibold text-text-primary group-hover/doc:text-accent transition-colors">
+                {doc.title}
+              </span>
+            </a>
+          ))}
+        </div>
+      </div>
+    )}
+
+    {/* Action Links */}
+    {(project.repoUrl || project.liveUrl || project.demoUrl) && (
+      <div class="flex flex-wrap gap-6 mt-2">
+        {project.repoUrl && (
+          <a href={project.repoUrl} target="_blank" rel="noopener noreferrer" class="font-mono text-sm text-text-secondary hover:text-accent transition-colors">
+            [ SOURCE_CODE ]
+          </a>
+        )}
+        {project.liveUrl && (
+          <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" class="font-mono text-sm text-text-secondary hover:text-accent transition-colors">
+            [ LIVE_SITE ]
+          </a>
+        )}
+        {project.demoUrl && (
+          <a href={project.demoUrl} target="_blank" rel="noopener noreferrer" class="font-mono text-sm text-text-secondary hover:text-accent transition-colors">
+            [ SYSTEM_DEMO ]
+          </a>
+        )}
+      </div>
+    )}
+
+  </div>
+</div>

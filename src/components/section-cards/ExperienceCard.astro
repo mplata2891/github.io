@@ -1,0 +1,79 @@
+---
+// src/components/ExperienceCard.astro
+const { job } = Astro.props;
+---
+
+<article class="bg-surface border border-industrial p-8 rounded-sm group relative hover:border-accent transition-all duration-300 overflow-hidden h-full">
+  
+  {/* Decorative Active Indicator Line */}
+  {job.statusNode === "[ ACTIVE_NODE ]" && (
+     <div class="absolute left-0 top-0 bottom-0 w-1 bg-accent/20 group-hover:bg-accent transition-colors duration-300 shadow-[0_0_8px_var(--color-accent)]"></div>
+  )}
+
+  <div class="relative z-10 flex flex-col md:flex-row gap-8 pl-2">
+    
+    {/* Left Column: Metadata */}
+    <div class="md:w-1/3 flex flex-col gap-4">
+      {/* STATUS */}
+      <p class={`font-mono text-sm tracking-widest uppercase ${job.statusNode === '[ ACTIVE_NODE ]' ? 'text-phosphor' : 'text-text-secondary'}`}>
+        {job.statusNode}
+      </p>
+      
+      {/* COMPANY & LOCATION */}
+      <div>
+        {/* Chakra Petch for the heavy company name */}
+        <h3 class="text-xl font-display font-bold text-text-primary tracking-wide">
+          {job.company}
+        </h3>
+        <p class="font-mono text-sm text-text-secondary uppercase mt-1">
+          // LOC: {job.location}
+        </p>
+      </div>
+      
+      {/* TIMELINE */}
+      <div>
+        {/* Telemetry Blue for time data */}
+        <p class="font-mono text-sm text-critical uppercase">
+          {job.dates}
+        </p>
+        <p class="font-mono text-xs text-text-primary bg-industrial/20 px-2 py-1 inline-block mt-2 rounded-sm border border-industrial uppercase">
+          Uptime: {job.uptime}
+        </p>
+      </div>
+      
+      {/* TAGS */}
+      <div class="flex flex-wrap gap-2 mt-2">
+        {job.tags.map((tag) => (
+          <span class="px-2 py-1 bg-void border border-industrial/50 text-xs font-mono text-text-secondary uppercase">
+            #{tag}
+          </span>
+        ))}
+      </div>
+    </div>
+
+    {/* Right Column: Execution Details */}
+    <div class="md:w-2/3 md:border-l border-industrial md:pl-8">
+      
+      {/* Chakra Petch for the Job Title */}
+      <h4 class="text-lg md:text-xl font-display font-bold mb-6 text-alert uppercase tracking-wide">
+        {job.title}
+      </h4>
+      
+      <ul class="flex flex-col gap-4">
+        {job.responsibilities.map((task) => (
+          <li class="flex items-start gap-3 group/item">
+            {/* The signature purple Accent kept here for the interaction hover */}
+            <span class="font-mono text-industrial group-hover/item:text-accent transition-colors mt-0.5">>></span>
+            
+            {/* Inter font for maximum readability on paragraphs */}
+            <p class="font-sans text-sm text-text-primary leading-relaxed">
+              {task}
+            </p>
+          </li>
+        ))}
+      </ul>
+      
+    </div>
+
+  </div>
+</article>

@@ -1,0 +1,27 @@
+/* ==========================================================================
+   EXPERIENCE DATA TEMPLATE
+   Copy the object below and paste it into the EXPERIENCE array.
+   ==========================================================================
+
+  {
+    id: "UNIQUE_ID",
+    statusNode: "[ ACTIVE_NODE ] | [ ARCHIVED_NODE ]",
+    company: "Company Name",
+    location: "City, State",
+    dates: "Month Year - Month Year",
+    uptime: "Duration (e.g., '2 Years', '16+ Years')",
+    
+    // my specific job titles or roles
+    title: "Job Title 1 / Job Title 2",
+    
+    // Array of technical, operational, or systemic keywords
+    tags: ["TAG_1", "TAG_2"],
+    
+    // Array of strings detailing my responsibilities and impact
+    responsibilities: [
+      "Action-oriented bullet point detailing your impact.",
+      "Another bullet point with metrics if possible."
+    ]
+  }
+
+========================================================================== */

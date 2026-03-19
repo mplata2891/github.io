@@ -1,0 +1,47 @@
+---
+// src/components/SystemNav.astro
+
+// Centralized data for the HUD navigation nodes
+const NAV_ITEMS = [
+  { href: "#hero", label: "01 // STATUS" },
+  { href: "#projects", label: "02 // PROJECTS" },
+  { href: "#lab", label: "03 // LAB_ARCHIVE" },
+  { href: "#coursework", label: "04 // THEORY_LOGS" },
+  { href: "#education", label: "05 // CREDENTIALS" },
+  { href: "#experience", label: "06 // EXPERIENCE" },
+  { href: "#about", label: "07 // OPERATOR" }
+];
+
+// Style Abstractions
+const navWrapperStyle = [
+  "fixed right-8 top-1/2 -translate-y-1/2 z-50 hidden lg:flex",
+  "flex-col gap-6 border-r border-industrial pr-4"
+].join(" ");
+
+const linkStyle = [
+  "nav-link group flex items-center justify-end gap-3 font-mono",
+  "text-sm tracking-widest text-text-secondary",
+  "hover:text-accent-hover transition-colors"
+].join(" ");
+
+const dotStyle = [
+  "nav-dot h-2 w-2 rounded-full border border-industrial",
+  "group-hover:border-accent-hover transition-colors"
+].join(" ");
+---
+
+<nav class={navWrapperStyle}>
+  {NAV_ITEMS.map((item) => (
+    <a href={item.href} class={linkStyle}>
+      <span class="uppercase">{item.label}</span>
+      <div class={dotStyle}></div>
+    </a>
+  ))}
+</nav>
+
+<script>
+  import { initSystemNav } from '../../scripts/scroll_spy.js';
+  
+  // Boot the observer once the DOM is ready
+  initSystemNav();
+</script>

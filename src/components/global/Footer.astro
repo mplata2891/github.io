@@ -1,0 +1,36 @@
+---
+// src/components/Footer.astro
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="w-full border-t border-industrial bg-void mt-32 py-8 px-6 lg:px-32">
+  <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+    
+    {/* System Status Readout */}
+    <div class="flex items-center gap-3">
+      <div class="w-2 h-2 rounded-full bg-accent opacity-50"></div>
+      <p class="font-mono text-xs text-text-secondary uppercase tracking-widest">
+        // END_OF_LOG
+      </p>
+    </div>
+
+    {/* External Comm Links */}
+    <div class="flex gap-6">
+      <a href="https://github.com/mplata2891" target="_blank" rel="noopener noreferrer" class="font-mono text-xs text-text-secondary hover:text-accent transition-colors">
+        [ GITHUB ]
+      </a>
+      <a href="https://linkedin.com/in/your-profile" target="_blank" rel="noopener noreferrer" class="font-mono text-xs text-text-secondary hover:text-accent transition-colors">
+        [ LINKEDIN ]
+      </a>
+      <a href="mailto:your-email@example.com" class="font-mono text-xs text-text-secondary hover:text-accent transition-colors">
+        [ OPEN_COMMLINK ]
+      </a>
+    </div>
+
+    {/* Copyright & Versioning */}
+    <p class="font-mono text-xs text-text-secondary opacity-50">
+      © {currentYear} M.P. // SYS_VER_1.0.0
+    </p>
+
+  </div>
+</footer>

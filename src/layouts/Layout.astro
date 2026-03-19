@@ -1,0 +1,77 @@
+---
+// src/layouts/Layout.astro
+import '../styles/global.css';
+
+// local typography
+import '@fontsource/inter/400.css';
+import '@fontsource/inter/600.css';
+import '@fontsource/inter/700.css';
+
+import '@fontsource/jetbrains-mono/400.css';
+import '@fontsource/jetbrains-mono/700.css';
+
+import '@fontsource/chakra-petch/400.css';
+import '@fontsource/chakra-petch/600.css';
+import '@fontsource/chakra-petch/700.css';
+
+// System UI
+import BaseHead from '../components/global/BaseHead.astro';
+import Header from '../components/global/Header.astro';
+import SystemNav from '../components/global/SystemNav.astro';
+import Footer from '../components/global/Footer.astro';
+import CircuitTrace from '../components/system/CircuitTrace.astro';
+import BootScreen from '../components/system/BootScreen.astro';
+---
+
+<html lang="en" class="scroll-smooth">
+<head>
+  <BaseHead title="M.P. | Computer Engineering" />
+</head>
+
+<body class:list={[
+  "bg-void text-text-primary text-lg font-sans selection:bg-accent",
+  "selection:text-void relative min-h-screen"
+]}>
+
+  {/* ATMOSPHERIC FX: CRT SCANLINES */}
+  <div class="crt-scanlines fixed inset-0 w-full h-full opacity-20 pointer-events-none z-50"></div>
+
+  {/* GLOBAL UI */}
+  <Header />  
+  <SystemNav />
+
+  <BootScreen />
+  <CircuitTrace />
+
+  {/* THE PAGE CONTENT PLUGS IN HERE */}
+  <slot />
+
+  {/* GLOBAL UI */}
+  <Footer />
+
+  <script>
+    // Initialize the Intersection Observer
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.15 // Triggers when 15% of the element crosses the threshold
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          // System online: snap into place
+          entry.target.classList.add('deploy-visible');
+          
+          // stop observing once it's visible so it doesn't re-animate every time you scroll up and down
+          observer.unobserve(entry.target); 
+        }
+      });
+    }, observerOptions);
+
+    // Boot up the observer on all hidden modules
+    const hiddenModules = document.querySelectorAll('.deploy-hidden');
+    hiddenModules.forEach((module) => observer.observe(module));
+  </script> 
+</body>
+</html>

@@ -1,0 +1,52 @@
+---
+// src/components/LabArchive.astro
+import { LABS, LABS_DESCRIPTION } from '../data/labs.js';
+import LabCard from './section-cards/LabCard.astro';
+import SysCarousel from './system/SysCarousel.astro';
+
+// IMPORT THE HARDWARE NODE
+import HardwareNode from './ui/HardwareNode.astro';
+---
+
+<section id="lab" class="flex flex-col w-full scroll-mt-24 mb-16 deploy-hidden">
+  
+  {/* SECTION HEADER */}
+  <div class="flex items-center mb-4 w-full">
+    
+    <div class="relative flex items-center">
+      {/* The wire shooting left to the main bus */}
+      <div class="trace-connector hidden lg:block z-0"></div>
+      
+      {/* Hardware Node (Using your signature Purple Accent) */}
+      <HardwareNode class="text-accent hidden lg:block relative z-10 mr-4 bg-void" />
+      
+      {/* Display Font (Chakra Petch) for the heavy section title */}
+      <h2 class="text-2xl font-display font-bold tracking-tight uppercase glitch-hover text-text-primary">
+        LAB ARCHIVE
+      </h2>
+    </div>
+
+    {/* Right-side line and metadata */}
+    <div class="h-[1px] flex-grow bg-industrial ml-4"></div>
+    <p class="font-mono text-sm text-text-secondary uppercase ml-4">
+      Execution_Logs_v5.0
+    </p>
+    
+  </div>
+
+  {/* DYNAMIC CONTEXT PARAGRAPH */}
+  <p class="font-sans text-text-secondary leading-relaxed mb-8 w-full">
+    {LABS_DESCRIPTION}
+  </p>
+
+  {/* CAROUSEL */}
+  <SysCarousel>
+    {LABS.map((lab) => (
+      <div class="w-full md:w-[85%] flex-shrink-0 snap-center flex flex-col h-full">
+        {/* This wrapper MUST have "flex", "flex-col", and "h-full" to stretch */}
+        <LabCard lab={lab} />
+      </div>
+    ))}
+  </SysCarousel>
+
+</section>

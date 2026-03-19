@@ -1,0 +1,33 @@
+/* ==========================================================================
+   PROJECT DATA TEMPLATE
+   Copy the object below and paste it into the new project-name.js file
+   ==========================================================================
+
+  {
+    id: "UNIQUE_ID",
+    category: "System Type // e.g., Community Infrastructure",
+    title: "Project Name",
+    span: "md:col-span-2", // Grid sizing: col-span-1, md:col-span-2, etc.
+    status: "ACTIVE | DEPLOYED | PROTOTYPE",
+    
+    // my specific title or technical role on the project
+    role: "Lead Developer / Systems Integrator",
+    
+    // high-level summary of the system and its core function
+    description: `What the system does, the architecture it uses, and 
+                  why it was built.`,
+    
+    // the business, community, or technical impact
+    impact: `What was the tangible outcome? E.g., 'Serves daily users' 
+             or 'Reduced latency by 15%'.`,
+             
+    tags: ["TECH_1", "TECH_2", "TECH_3"],
+    
+    // Links out to the source or the live production build
+    repoUrl: "https://github.com/mplata2891/your-repo",
+    liveUrl: "https://your-live-site.com" // Omit if not applicable
+    reportUrl: "/assets/docs/F1TENTH_Final_Report.pdf", // The technical spec
+    demoUrl: "https://youtube.com/shorts/your-video-link" // Physical proof
+  }
+
+========================================================================== */

@@ -1,0 +1,59 @@
+---
+// src/pages/index.astro
+import LegalFooter from '../components/footer/LegalFooter.astro';
+import bgImage from '../assets/images/splash-page/eld-64-so-tiny.jpg';
+import { Image } from 'astro:assets';
+---
+
+<html lang="en">
+<head>
+    <title>Tiny Leaders Reborn</title>
+    <style>
+        /* =========================================
+           THEME VARIABLES & PERSISTENCE
+           ========================================= */
+        :root, [data-theme='light'] {
+            --bg: #f0f0f0;
+            --text: #111;
+            --accent: #ff4d00;
+        }
+
+        [data-theme='dark'] { --bg: #0a0a0a; --text: #fff; --accent: #ff4d00; }
+        [data-theme='committee'] { --bg: #1a1a1a; --text: #eee; --accent: #9c27b0; }
+        
+        /* ... Additional layout styling omitted for brevity ... */
+    </style>
+</head>
+<body>
+
+    <div class="fullscreen-bg">
+        {/* Optimized Astro Image Component */}
+        <Image src={bgImage} alt="Background" class="bg-img" />
+    </div>
+
+    <main class="totem-container">
+        <span class="slogan-top">Big Plays</span>
+        <h1 class="logo-main">Tiny Leaders</h1>
+        <span class="reborn-sub">Reborn</span>
+        
+        <nav class="gateway-nav">
+            <a href="/discover">Discover</a>
+            <span class="nav-dot">&bull;</span>
+            <a href="/construction">Play</a>
+            <span class="nav-dot">&bull;</span>
+            <a href="/construction">Master</a>
+        </nav>
+    </main>
+
+    <div class="splash-footer-container">
+        {/* Modular Component Injection */}
+        <LegalFooter />
+    </div>
+
+    {/* Client-side Theme Hydration */}
+    <script is:inline>
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    </script>
+</body>
+</html>

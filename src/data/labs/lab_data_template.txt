@@ -1,0 +1,59 @@
+/* ==========================================================================
+   DATA ENTRY TEMPLATES
+   ==========================================================================
+
+  // 1. SOFTWARE LAB TEMPLATE
+  {
+    id: "COURSE_CODE",
+    type: "software",
+    courseName: "Full Course Title",
+    professor: "Instructor Name",
+    tags: ["KEYWORD_1", "KEYWORD_2"],
+    
+    // the Problem
+    blurb: `Describe the assignment constraints, system requirements, or 
+            the core problem I was tasked with solving.`,
+            
+    // the Solution
+    readme: `Detail of my engineering approach, architecture choices, and 
+             how I successfully executed the solution.`,
+             
+    // Software Specifics
+    primaryLanguage: "Java / C++ / Python",
+    repoUrl: specific repo url found on sys_config.js,
+    
+    // 5-10 lines of my most elegant logic for quick scanning
+    codeSnippet: `// Highlighted Logic
+function example() {
+  return "Keep it brief";
+}`,
+    
+    // The full payload for the Discord-style "Expand" button
+    fullCode: `// Complete file contents go here
+// This will be hidden by default until expanded.`
+  },
+
+  // 2. HARDWARE LAB TEMPLATE
+  {
+    id: "COURSE_CODE",
+    type: "hardware",
+    courseName: "Full Course Title",
+    professor: "Instructor Name",
+    tags: ["KEYWORD_1", "KEYWORD_2"],
+    
+    // The Problem
+    blurb: `Describe the physical constraints, required specifications, 
+            or the circuit behavior you needed to achieve.`,
+            
+    // The Solution
+    readme: `Detail my design process, testing methodology, and the 
+             final physical or simulated outcome.`,
+             
+    // Hardware Specifics
+    hardwareSpecs: ["NVIDIA Jetson", "Oscilloscope", "FPGA Board"],
+    
+    // Path to a clean block diagram or schematic
+    schematicAsset: link to the asset
+  },
+
+========================================================================== */

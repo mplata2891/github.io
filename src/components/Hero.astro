@@ -1,0 +1,42 @@
+---
+// src/components/Hero.astro
+import { IDENTITY } from '../data/identity.js';
+---
+
+<section id="hero" class="min-h-[60vh] flex flex-col justify-center mb-16">
+  
+  {/* HARDWARE STATUS INDICATOR */}
+  <div class="flex items-center gap-3 mb-4">
+    <div class="w-2 h-2 bg-phosphor animate-pulse"></div>
+    <p class="font-mono text-accent text-sm tracking-[0.3em] uppercase">
+      {IDENTITY.statusText}
+    </p>
+  </div>
+  
+  {/* MY NAME */}
+  <h1 class="text-7xl font-display font-bold mb-4 tracking-tighter uppercase text-text-primary">
+    {IDENTITY.name}
+  </h1>
+  
+  {/* TITLE WITH BLINKING CURSOR */}
+  <h2 class="text-2xl font-mono text-text-secondary mb-8 uppercase flex items-center">
+    <span>{IDENTITY.title.replace('_', '')}</span>
+    <span class="text-phosphor animate-blink font-bold ml-1">_</span>
+  </h2>
+  
+  {/* BIO CONTAINER */}
+  <div class="flex flex-col gap-4 max-w-2xl">
+    
+    <p class="text-alert text-lg leading-relaxed font-medium">
+      {IDENTITY.shortBio}
+    </p>
+    
+    {IDENTITY.fullBio.map((paragraph) => (
+      <p class="text-text-primary leading-relaxed">
+        {paragraph}
+      </p>
+    ))}
+
+  </div>
+  
+</section>
