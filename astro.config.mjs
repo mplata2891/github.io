@@ -5,7 +5,7 @@ import tailwindcss from '@tailwindcss/vite';
 // https://astro.build/config
 export default defineConfig({
   // 1. INJECT YOUR GITHUB PAGES URL HERE
-  site: 'https://<YOUR_GITHUB_USERNAME>.github.io',
+  site: 'https://mplata2891.github.io',
 
   // 2. REPOSITORY ROUTING (Read carefully)
   // If your GitHub repository is named EXACTLY "<YOUR_USERNAME>.github.io", leave this commented out.
