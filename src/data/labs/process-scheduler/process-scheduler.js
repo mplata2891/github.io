@@ -14,6 +14,8 @@ export const processSchedulerLab = {
   readme: `Developed a custom Multi-Level Feedback Queue scheduler utilizing dynamically allocated Linked Lists to represent CPU process queues. Implemented scheduling algorithms including First-Come-First-Serve (FCFS) and strict Feedback Queue logic. The system features dynamic priority downgrades upon time-quantum expiration and includes a starvation-prevention (aging) mechanism to automatically upgrade long-waiting processes, preventing execution bottlenecks.`,
   
   primaryLanguage: "c",
+  repoUrl: "https://github.com/mplata2891/ECE4310_Seminar2_ProcessScheduler",
+  
   codeSnippet: snippet,
   fullCode: fullCode
 };

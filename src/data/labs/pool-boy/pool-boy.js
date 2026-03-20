@@ -14,6 +14,8 @@ export const poolBoyLab = {
   readme: `Developed a C# Windows Form application utilizing strict Object-Oriented Programming (OOP) principles. Architected modular classes for Pool, Temperature, Location, and MaintenanceCrew. Implemented a Nearest Neighbor pathfinding algorithm to calculate the most efficient Euclidean route for a maintenance crew to traverse and service multiple coordinate-based pool locations, updating their properties dynamically in the GUI.`,
   
   primaryLanguage: "csharp",
+  repoUrl: "https://github.com/mplata2891/ECE2310_FinalProject_PoolBoyIndustries/tree/main",
+  
   codeSnippet: snippet,
   fullCode: fullCode
 };

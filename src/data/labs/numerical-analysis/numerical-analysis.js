@@ -14,6 +14,8 @@ export const numericalAnalysisLab = {
   readme: `Engineered a numerical analysis program to ingest state names and populations from external text files into a custom Array ADT ('UsaPopulations'). Implemented a pure recursive algorithm to compute the national population average, demonstrating strong memory stack management and the ability to translate formal mathematical proofs into executable C++ logic.`,
   
   primaryLanguage: "cpp",
+  repoUrl: "https://github.com/mplata2891/ECE3310_Project1_NumericalAnalysis/tree/main",
+  
   codeSnippet: snippet,
   fullCode: fullCode
 };

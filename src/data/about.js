@@ -11,18 +11,22 @@ export const ABOUT = {
   sys_id: "M1-K3",
   
   background: [
-    "Born and raised in Los Angeles with a deep cultural heritage " +
-    "rooted in Ciudad Mexico. Proudly Chicano, reclaiming " +
-    "the term 'pocho' as a badge of honor.",
-    "I operate at the exact intersection of creative vision and " +
-    "strict engineering discipline. I am built for uncomfortability, " +
-    "sacrifice, and the grit required to solve complex problems.",
-    "My B.S. in Computer Engineering is the result of a 14-year " +
-    "marathon. I built this foundation while working full-time, " +
-    "raising two children, and pushing forward through profound " +
-    "personal loss.",
-    "There is no going back, only execution."
-  ],
+  "Born and raised in Los Angeles, with roots deep in Ciudad México. Proudly" +
+  " Chicano. I've always moved between worlds, and that's shaped how I think" +
+  " about systems: nothing exists in isolation.",
+
+  "My B.S. in Computer Engineering is the result of a 14-year effort built" +
+  " alongside a full-time career, raising two kids, and navigating deep personal" +
+  " loss. That context isn't an excuse. It's the environment where I developed" +
+  " the discipline to finish hard things.",
+
+  "I work at the intersection of hardware and software because that's where the" +
+  " interesting problems live. The low-level stuff, the timing constraints, the" +
+  " register maps, the things that break in ways a debugger can't catch. . ." +
+  " that's where I want to be.",
+
+  "There is no going back. Only execution."
+],
   
   // creative outlets here
   offline_metrics: [

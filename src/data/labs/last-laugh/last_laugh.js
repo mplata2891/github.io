@@ -6,7 +6,7 @@ export const lastLaughLab = {
   id: "COSCI_290",
   type: "software",
   courseName: "Introduction to Java",
-  professor: "Sina Tuy",
+  professor: "Prof. Sina Tuy",
   tags: ["JAVA", "OOP", "FILE_I/O", "PROBABILITY"],
   
   // The Problem

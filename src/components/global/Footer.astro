@@ -1,5 +1,7 @@
 ---
-// src/components/Footer.astro
+// src/components/global/Footer.astro
+import { FOOTER } from "../../data/footer.js";
+
 const currentYear = new Date().getFullYear();
 ---
 
@@ -10,26 +12,27 @@ const currentYear = new Date().getFullYear();
     <div class="flex items-center gap-3">
       <div class="w-2 h-2 rounded-full bg-accent opacity-50"></div>
       <p class="font-mono text-xs text-text-secondary uppercase tracking-widest">
-        // END_OF_LOG
+        {FOOTER.statusText}
       </p>
     </div>
 
     {/* External Comm Links */}
     <div class="flex gap-6">
-      <a href="https://github.com/mplata2891" target="_blank" rel="noopener noreferrer" class="font-mono text-xs text-text-secondary hover:text-accent transition-colors">
-        [ GITHUB ]
-      </a>
-      <a href="https://linkedin.com/in/your-profile" target="_blank" rel="noopener noreferrer" class="font-mono text-xs text-text-secondary hover:text-accent transition-colors">
-        [ LINKEDIN ]
-      </a>
-      <a href="mailto:your-email@example.com" class="font-mono text-xs text-text-secondary hover:text-accent transition-colors">
-        [ OPEN_COMMLINK ]
-      </a>
+      {FOOTER.commLinks.map((link) => (
+        <a 
+          href={link.url} 
+          target={link.url.startsWith('http') ? "_blank" : "_self"} 
+          rel={link.url.startsWith('http') ? "noopener noreferrer" : ""} 
+          class="font-mono text-xs text-text-secondary hover:text-accent transition-colors"
+        >
+          {link.label}
+        </a>
+      ))}
     </div>
 
     {/* Copyright & Versioning */}
     <p class="font-mono text-xs text-text-secondary opacity-50">
-      © {currentYear} M.P. // SYS_VER_1.0.0
+      © {currentYear} {FOOTER.copyrightInitials} // {FOOTER.systemVersion}
     </p>
 
   </div>
