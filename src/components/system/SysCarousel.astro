@@ -1,31 +1,72 @@
 ---
-// src/components/SysCarousel.astro
+// src/components/system/SysCarousel.astro
+
+const mobileBtn = [
+  "prev-btn sm:hidden absolute z-10 top-1/2 -translate-y-1/2",
+  "px-2 py-6 bg-void/90 border border-industrial text-text-secondary",
+  "hover:text-accent hover:border-accent backdrop-blur-sm transition-all"
+].join(" ");
+
+const desktopBtn = [
+  "font-mono text-sm text-text-secondary hover:text-accent",
+  "transition-colors"
+].join(" ");
 ---
 
 <sys-carousel class="flex flex-col w-full group/carousel relative">
   
-  {/* 1. CAROUSEL TRACK */}
-  <div class="carousel-track flex overflow-x-auto snap-x snap-mandatory gap-6 pb-4 hide-scrollbar items-stretch">
-    <slot />
+  {/* 1. TRACK WRAPPER (For Mobile Arrows) */}
+  <div class="relative w-full flex items-center">
+    
+    {/* Mobile Prev Arrow */}
+    <button class:list={[mobileBtn, "left-0 border-l-0 prev-btn"]}>
+      &lt;
+    </button>
+
+    <div class:list={[
+      "carousel-track flex overflow-x-auto snap-x snap-mandatory gap-6",
+      "pb-4 hide-scrollbar items-stretch w-full"
+    ]}>
+      <slot />
+    </div>
+
+    {/* Mobile Next Arrow */}
+    <button class:list={[mobileBtn, "right-0 border-r-0 next-btn"]}>
+      &gt;
+    </button>
   </div>
 
-  {/* 2. HARDWARE CONTROLS */}
-  <div class="flex flex-col sm:flex-row justify-between items-center gap-4 mt-2 border-t border-industrial pt-4">
+  {/* 2. DESKTOP HARDWARE CONTROLS (Hidden on Mobile) */}
+  <div class:list={[
+    "hidden sm:flex flex-row justify-between items-center gap-4",
+    "mt-2 border-t border-industrial pt-4"
+  ]}>
     
     {/* Directional Nav (Hidden during Auto-Scroll) */}
-    <div class="nav-buttons flex gap-6 opacity-0 pointer-events-none transition-opacity duration-300">
-      <button class="prev-btn font-mono text-sm text-text-secondary hover:text-accent transition-colors">
+    <div class:list={[
+      "nav-buttons flex gap-6 opacity-0 pointer-events-none",
+      "transition-opacity duration-300"
+    ]}>
+      <button class:list={[desktopBtn, "prev-btn"]}>
         [ &lt;_PREV ]
       </button>
-      <button class="next-btn font-mono text-sm text-text-secondary hover:text-accent transition-colors">
+      <button class:list={[desktopBtn, "next-btn"]}>
         [ NEXT_&gt; ]
       </button>
     </div>
 
     {/* Explicit UX Toggle Button */}
-    <button class="toggle-btn font-mono text-xs sm:text-sm text-accent border border-accent/30 bg-accent/5 px-4 py-2 hover:bg-accent/10 hover:border-accent transition-all uppercase tracking-widest flex items-center gap-3 group">
-      <span class="status-dot w-2 h-2 rounded-full bg-accent animate-pulse"></span>
-      <span class="btn-text">[ SYS_STATUS: AUTO_SCROLL | CLICK_TO_INTERCEPT ]</span>
+    <button class:list={[
+      "toggle-btn font-mono text-sm text-accent border border-accent/30",
+      "bg-accent/5 px-4 py-2 hover:bg-accent/10 hover:border-accent",
+      "transition-all uppercase tracking-widest flex items-center",
+      "gap-3 group"
+    ]}>
+      <span class="status-dot w-2 h-2 rounded-full bg-accent animate-pulse">
+      </span>
+      <span class="btn-text">
+        [ SYS_STATUS: AUTO_SCROLL | CLICK_TO_INTERCEPT ]
+      </span>
     </button>
     
   </div>
@@ -49,106 +90,11 @@
 
 {/* --- JS: BIDIRECTIONAL INFINITE CAROUSEL LOGIC --- */}
 <script>
+  import { initSysCarousel } from '../../scripts/scroll_carousel.js';
+
   class SysCarousel extends HTMLElement {
     connectedCallback() {
-      const track = this.querySelector('.carousel-track');
-      const prevBtn = this.querySelector('.prev-btn');
-      const nextBtn = this.querySelector('.next-btn');
-      const toggleBtn = this.querySelector('.toggle-btn');
-      const btnText = this.querySelector('.btn-text');
-      const statusDot = this.querySelector('.status-dot');
-      const navButtons = this.querySelector('.nav-buttons');
-
-      let isAuto = true;
-      let autoScrollInterval;
-      let isTransitioning = false; 
-
-      const getScrollAmount = () => track.firstElementChild.clientWidth + 24;
-
-      const scrollNext = () => {
-        if (isTransitioning || track.children.length < 2) return;
-        isTransitioning = true;
-        
-        const scrollAmount = getScrollAmount();
-        
-        // Smooth scroll right
-        track.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-
-        // Wait for snap animation, then shift DOM
-        setTimeout(() => {
-          track.appendChild(track.firstElementChild);
-          track.style.scrollBehavior = 'auto';
-          track.scrollLeft -= scrollAmount;
-          
-          requestAnimationFrame(() => {
-            track.style.scrollBehavior = 'smooth';
-            isTransitioning = false;
-          });
-        }, 500); 
-      };
-
-      const scrollPrev = () => {
-        if (isTransitioning || track.children.length < 2) return;
-        isTransitioning = true;
-
-        const scrollAmount = getScrollAmount();
-        
-        // 1. Disable smooth scroll and instantly move the last card to the front
-        track.style.scrollBehavior = 'auto';
-        track.prepend(track.lastElementChild);
-        
-        // 2. Instantly jump the scrollbar forward so the UI doesn't visually shift
-        track.scrollLeft += scrollAmount;
-        
-        // 3. Force the browser to paint the new DOM state before animating
-        requestAnimationFrame(() => {
-          requestAnimationFrame(() => {
-            // 4. Re-enable smooth scroll and slide backward to reveal the new card
-            track.style.scrollBehavior = 'smooth';
-            track.scrollLeft -= scrollAmount;
-            
-            setTimeout(() => {
-              isTransitioning = false;
-            }, 500);
-          });
-        });
-      };
-
-      const startAuto = () => {
-        autoScrollInterval = setInterval(scrollNext, 4000); 
-      };
-
-      const stopAuto = () => {
-        clearInterval(autoScrollInterval);
-      };
-
-      // Handle the explicit UX toggle click
-      toggleBtn?.addEventListener('click', () => {
-        isAuto = !isAuto;
-        
-        if (isAuto) {
-          startAuto();
-          btnText.textContent = '[ SYS_STATUS: AUTO_SCROLL | CLICK_TO_INTERCEPT ]';
-          toggleBtn.classList.replace('text-text-primary', 'text-accent');
-          toggleBtn.classList.replace('border-industrial', 'border-accent/30');
-          statusDot.classList.replace('bg-text-primary', 'bg-accent');
-          statusDot.classList.add('animate-pulse');
-          navButtons?.classList.remove('nav-active');
-        } else {
-          stopAuto();
-          btnText.textContent = '[ MANUAL_OVERRIDE | CLICK_TO_RESUME_AUTO ]';
-          toggleBtn.classList.replace('text-accent', 'text-text-primary');
-          toggleBtn.classList.replace('border-accent/30', 'border-industrial');
-          statusDot.classList.replace('bg-accent', 'bg-text-primary');
-          statusDot.classList.remove('animate-pulse');
-          navButtons?.classList.add('nav-active');
-        }
-      });
-
-      prevBtn?.addEventListener('click', scrollPrev);
-      nextBtn?.addEventListener('click', scrollNext);
-
-      startAuto();
+      initSysCarousel(this); 
     }
   }
 

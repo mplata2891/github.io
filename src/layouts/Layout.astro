@@ -29,8 +29,9 @@ import BootScreen from '../components/system/BootScreen.astro';
 </head>
 
 <body class:list={[
-  "bg-void text-text-primary text-lg font-sans selection:bg-accent",
-  "selection:text-void relative min-h-screen"
+  "bg-void text-text-primary text-lg font-sans",
+  "selection:bg-accent selection:text-void relative",
+  "min-h-screen overflow-x-hidden" /* <-- THE MOBILE FIX */
 ]}>
 
   {/* ATMOSPHERIC FX: CRT SCANLINES */}
