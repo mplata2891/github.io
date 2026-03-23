@@ -10,17 +10,12 @@ export const lastLaughLab = {
   tags: ["JAVA", "OOP", "FILE_I/O", "PROBABILITY"],
   
   // The Problem
-  blurb: `Design and implement a text-based adventure game that fulfills strict
-  architectural requirements, including persistent save states written to a file,
-  multidimensional arrays for map traversal, and dynamic probability mechanics.`,
-  
-  // The Solution
-  readme: `Developed "LastLaugh," a Java-based escape room game. Engineered a 
-  modular, object-oriented architecture utilizing dedicated utility classes 
-  (FileUtility, GameDriver, InputUtility) to separate game logic from state 
-  management. Implemented a dynamic risk calculator where failing puzzle 
-  manipulations or riddles progressively increases the player's probability 
-  of death utilizing random number generation.`,
+  problem: `Build a text-based adventure game with persistent save states,
+  multidimensional map traversal, and dynamic probability mechanics.`,
+
+  solution: `Java escape room game with modular OOP architecture separating
+  game logic, file I/O, and input handling. Failed puzzles and wrong
+  riddle answers escalate the player's death probability each attempt.`,
   
   primaryLanguage: "java",
   repoUrl: "https://github.com/mplata2891/last-laugh",

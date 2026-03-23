@@ -11,11 +11,11 @@
     tags: ["KEYWORD_1", "KEYWORD_2"],
     
     // the Problem
-    blurb: `Describe the assignment constraints, system requirements, or 
+    problem: `Describe the assignment constraints, system requirements, or 
             the core problem I was tasked with solving.`,
             
     // the Solution
-    readme: `Detail of my engineering approach, architecture choices, and 
+    solution: `Detail of my engineering approach, architecture choices, and 
              how I successfully executed the solution.`,
              
     // Software Specifics
@@ -42,11 +42,11 @@ function example() {
     tags: ["KEYWORD_1", "KEYWORD_2"],
     
     // The Problem
-    blurb: `Describe the physical constraints, required specifications, 
+    problem: `Describe the physical constraints, required specifications, 
             or the circuit behavior you needed to achieve.`,
             
     // The Solution
-    readme: `Detail my design process, testing methodology, and the 
+    solution: `Detail my design process, testing methodology, and the 
              final physical or simulated outcome.`,
              
     // Hardware Specifics

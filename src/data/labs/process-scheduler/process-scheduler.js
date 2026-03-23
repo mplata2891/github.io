@@ -9,10 +9,15 @@ export const processSchedulerLab = {
   professor: "Prof. Liviu Oniciuc",
   tags: ["C", "OPERATING_SYSTEMS", "MEMORY_MGT", "DATA_STRUCTURES"],
   
-  blurb: `Built a Multi-Level Feedback Queue (MLFQ) process scheduler in C to manage simulated embedded application processes with aging and priority upgrades.`,
-  
-  readme: `Developed a custom Multi-Level Feedback Queue scheduler utilizing dynamically allocated Linked Lists to represent CPU process queues. Implemented scheduling algorithms including First-Come-First-Serve (FCFS) and strict Feedback Queue logic. The system features dynamic priority downgrades upon time-quantum expiration and includes a starvation-prevention (aging) mechanism to automatically upgrade long-waiting processes, preventing execution bottlenecks.`,
-  
+  problem: `Design and implement a CPU process scheduler in C capable of managing
+  simulated embedded application processes across multiple priority levels,
+  preventing starvation, and handling dynamic workloads.`,
+
+  solution: `Three-queue MLFQ scheduler using dynamically allocated linked lists.
+  Implements Round-Robin with feedback demotion, FCFS on the lowest queue,
+  and an aging mechanism that auto-promotes starving processes to prevent
+  execution bottlenecks.`,
+
   primaryLanguage: "c",
   repoUrl: "https://github.com/mplata2891/ECE4310_Seminar2_ProcessScheduler",
   

@@ -10,7 +10,7 @@ import { processSchedulerLab } from './labs/process-scheduler/process-scheduler.
 import { hardwareBenchmarkLab } from './labs/hardware-benchmarking/hardware-benchmarking.js';
 
 // Section Context
-export const LABS_DESCRIPTION = "A technical archive of highlighting some of my" + 
+export const LABS_DESCRIPTION = "A technical archive highlighting some of my" + 
 " academic coursework and laboratory experiments. This collection demonstrates" + 
 " my foundational understanding of operating systems, hardware architecture, and" +
 " low-level software engineering.";

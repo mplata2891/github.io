@@ -9,9 +9,14 @@ export const poolBoyLab = {
   professor: "Prof. Mei Klein",
   tags: ["C#", "WINDOWS FORMS", "OOP", "PATHFINDING"],
   
-  blurb: `A Windows Form application simulating a pool maintenance routing system using object-oriented principles and nearest-neighbor pathfinding.`,
-  
-  readme: `Developed a C# Windows Form application utilizing strict Object-Oriented Programming (OOP) principles. Architected modular classes for Pool, Temperature, Location, and MaintenanceCrew. Implemented a Nearest Neighbor pathfinding algorithm to calculate the most efficient Euclidean route for a maintenance crew to traverse and service multiple coordinate-based pool locations, updating their properties dynamically in the GUI.`,
+  problem: `Design a Windows Form application that models a pool maintenance
+  routing system using object-oriented principles and an efficient
+  pathfinding strategy.`,
+
+  solution: `C# Windows Form app with modular OOP classes for Pool, Location,
+  Temperature, and MaintenanceCrew. A nearest-neighbor algorithm calculates
+  the optimal Euclidean route across coordinate-based pool locations,
+  updating each pool's properties dynamically in the GUI.`,
   
   primaryLanguage: "csharp",
   repoUrl: "https://github.com/mplata2891/ECE2310_FinalProject_PoolBoyIndustries/tree/main",

@@ -9,9 +9,13 @@ export const hardwareBenchmarkLab = {
   professor: "Prof. Mohamed El-Hadedy Aly",
   tags: ["PYTHON", "OPENCV", "PSUTIL", "ARM/x86", "TELEMETRY"],
   
-  blurb: `Benchmarked a Python-based image processing sequence across nine diverse x86/x64 and ARM hardware architectures to analyze CPU execution, memory utilization, and power consumption.`,
-  
-  readme: `Translated a MATLAB image processing pipeline (grayscale, Gaussian blur, edge detection, sharpening) into Python. Engineered multiple benchmarking scripts utilizing OpenCV and SciPy to accommodate varying architectural constraints across high-performance desktops, mobile SoCs, and single-board computers. Utilized the 'psutil' library to gather deep hardware telemetry, calculating total CPU cycles, peak memory usage (RSS), and Estimated Cycles Per Instruction (CPI) to evaluate performance-per-watt efficiency across platforms.`,
+  problem: `Benchmark a Python image processing pipeline across nine x86/x64
+  and ARM architectures to compare CPU execution, memory, and power usage.`,
+
+  solution: `Translated a MATLAB pipeline (grayscale, blur, edge detection,
+  sharpening) into Python using OpenCV and SciPy. Benchmarking scripts
+  capture CPU cycles, peak memory (RSS), and estimated CPI via psutil
+  to evaluate performance-per-watt across desktops, SoCs, and SBCs.`,
   
   primaryLanguage: "python",
   repoUrl: "https://github.com/california-polytechnic-university/ECE4300_SP2025/tree/main/Group_F",
