@@ -6,7 +6,7 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   // 1. INJECT YOUR GITHUB PAGES URL HERE
   site: 'https://mplata2891.github.io',
-  base: '/github.io',
+  base: '/',
 
   vite: {
     plugins: [tailwindcss()]
