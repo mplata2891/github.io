@@ -1,43 +1,63 @@
-# Astro Starter Kit: Minimal
+# M1-K3 // SYSTEM_ROOT
 
-```sh
-npm create astro@latest -- --template minimal
-```
+M.P. // Computer Engineering Portfolio & Lab Archive
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+A statically generated portfolio and project archive built to emulate 
+a hardware-level terminal interface. Cyberpunk-inspired aesthetic, 
+pulsing status indicators, and CRT scanline effects.
 
-## 🚀 Project Structure
+---
 
-Inside of your Astro project, you'll see the following folders and files:
+## Tech Stack
 
-```text
+- Framework: Astro (v6+)
+- Styling: Tailwind CSS
+- Logic: Vanilla JavaScript (ES6 Modules)
+- Deployment: GitHub Pages via GitHub Actions
+- Typography: JetBrains Mono, Chakra Petch, Inter
+
+---
+
+## File Structure
+
 /
 ├── public/
+│   └── assets/
+│       ├── resume/         # Static resume PDF
+│       └── docs/
+│           └── f1tenth/    # F1TENTH project documentation PDFs
 ├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+│   ├── components/         # Modular Astro UI components
+│   ├── data/               # Centralized data registries
+│   ├── layouts/            # Global page wrappers and metadata
+│   ├── pages/              # File-based routing
+│   ├── scripts/            # Isolated JS logic
+│   └── styles/             # Tailwind directives and custom CSS
+├── .github/workflows/      # CI/CD deployment pipeline
+└── astro.config.mjs
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+---
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+## Local Development
 
-Any static assets, like images, can be placed in the `public/` directory.
+Node.js v22.12.0 or higher required.
 
-## 🧞 Commands
+npm install
+npm run dev        # http://localhost:4321/
+npm run build      # Outputs static files to dist/
 
-All commands are run from the root of the project, from a terminal:
+---
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+## Core Features
 
-## 👀 Want to learn more?
+- Data registries in src/data/ act as a single source of truth for 
+  nav, contact links, and config
+- window.matchMedia checks disable auto-scroll on touch devices, 
+  defaulting to manual controls
+- Intersection Observers trigger sequential boot animations on scroll
+- Pushing to main triggers a GitHub Actions workflow that compiles 
+  and deploys to GitHub Pages automatically
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+---
+
+SYS_VER_1.0.0 // ONLINE
