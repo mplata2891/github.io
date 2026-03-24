@@ -19,7 +19,7 @@ pulsing status indicators, and CRT scanline effects.
 ---
 
 ## File Structure
-
+```
 /
 ├── public/
 │   └── assets/
@@ -35,7 +35,7 @@ pulsing status indicators, and CRT scanline effects.
 │   └── styles/             # Tailwind directives and custom CSS
 ├── .github/workflows/      # CI/CD deployment pipeline
 └── astro.config.mjs
-
+```
 ---
 
 ## Local Development
