@@ -41,11 +41,11 @@ pulsing status indicators, and CRT scanline effects.
 ## Local Development
 
 Node.js v22.12.0 or higher required.
-
+```
 npm install
 npm run dev        # http://localhost:4321/
 npm run build      # Outputs static files to dist/
-
+```
 ---
 
 ## Core Features
