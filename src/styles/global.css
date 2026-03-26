@@ -2,13 +2,15 @@
 
 @theme {
   /* Core Surfaces */
-  --color-void: #0C0C0F;
-  --color-surface: #0A0A0A;
-  --color-surface-highlight: #121212;
+  --color-void: #080808;
+  --color-surface: #0e0e0e;
+  --color-surface-highlight: #141414;
+  --color-surface-raised: #1a1a1a;
   
   /* Text Colors */
-  --color-text-primary: #F3F3F0;
-  --color-text-secondary: #A5A5A5;
+  --color-text-primary: #e2e2e2;
+  --color-text-secondary: #5a5a5a;
+  --color-text-dim: #2a2a2a;
 
   /* purple accents */
   --color-accent: #9D4EDD; 
@@ -17,7 +19,8 @@
   /* Functional Palette */
   --color-phosphor: #00B32D;      /* Matrix/Terminal Green - System Success */
   --color-critical: #FF3131;      /* Industrial Red - Error/Warning */
-  --color-telemetry: #004958;     /* Data/Observation Blue - Low-level status */
+  --color-telemetry: #0a7a8a;;     /* Data/Observation Blue - Low-level status */
+  --color-telemetry-dim: #052830;
   --color-alert: #FFB703;         /* Amber/Yellow - High Priority/Booting */
 
   /* Fonts */
@@ -26,12 +29,18 @@
   --font-display: 'Chakra Petch', sans-serif; 
 
   /* Borders */
-  --color-industrial: rgba(255, 255, 255, 0.1);
+  --color-industrial: rgba(255, 255, 255, 0.08);
+  --color-border-subtle: rgba(157, 78, 221, 0.15);
+  --color-border-dim: rgba(157, 78, 221, 0.08);
 
   /* Sharp Corners */
   --radius-none: 0px;
   --radius-sm: 4px;
   --radius-DEFAULT: 6px;
+
+  /* Glow Tokens */
+  --color-accent-glow: rgba(157, 78, 221, 0.25);
+  --color-accent-glow-strong: rgba(157, 78, 221, 0.5);
 
   /* === SYSTEM ANIMATIONS === */
   --animate-blink: blink 1s step-end infinite;
@@ -68,25 +77,45 @@
   animation: glitch-burst 0.3s linear forwards;
 }
 
+/* === GRID BACKGROUND === */
+  .bg-grid {
+  background-image:
+    linear-gradient(rgba(157, 78, 221, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(157, 78, 221, 0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.bg-grid-fine {
+  background-image:
+    linear-gradient(rgba(157, 78, 221, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(157, 78, 221, 0.03) 1px, transparent 1px);
+  background-size: 8px 8px;
+}
+
+/* === CLIPPED CORNER === */
+.card-clip {
+  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 0 100%);
+}
+
 @keyframes glitch-burst {
   0% {
     text-shadow: none;
     transform: translate(0, 0);
   }
   20% {
-    text-shadow: 2px 0px 0px var(--color-critical), -2px 0px 0px var(--color-telemetry);
-    transform: translate(-2px, 1px);
+  text-shadow: 2px 0px 0px var(--color-accent-hover), -2px 0px 0px rgba(157, 78, 221, 0.4);
+  transform: translate(-2px, 1px);
   }
   40% {
-    text-shadow: -2px 0px 0px var(--color-critical), 2px 0px 0px var(--color-telemetry);
+    text-shadow: -2px 0px 0px var(--color-accent), 2px 0px 0px var(--color-accent-hover);
     transform: translate(2px, -1px);
   }
   60% {
-    text-shadow: 2px 0px 0px var(--color-critical), -2px 0px 0px var(--color-telemetry);
+    text-shadow: 3px 0px 0px var(--color-accent-hover), -1px 0px 0px var(--color-accent);
     transform: translate(-1px, -2px);
   }
   80% {
-    text-shadow: -1px 0px 0px var(--color-critical), 1px 0px 0px var(--color-telemetry);
+    text-shadow: -1px 0px 0px var(--color-accent), 1px 0px 0px var(--color-accent-hover);
     transform: translate(1px, 2px);
   }
   100% {
@@ -117,7 +146,13 @@
   top: 50%;
   height: 2px;
   width: 50vw;       /* long enough to reach the vertical line on the left edge */
-  background-color: var(--color-telemetry);
+  background: linear-gradient(
+    to left,
+    var(--color-accent),
+    var(--color-telemetry),
+    transparent
+  );
+  box-shadow: 0 0 6px var(--color-accent-glow);
   
   transform-origin: right;
   transform: scaleX(0); /* hidden by default */

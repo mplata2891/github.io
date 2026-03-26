@@ -19,7 +19,7 @@ import HardwareNode from './ui/HardwareNode.astro';
       <HardwareNode class="text-accent hidden lg:block relative z-10 mr-4 bg-void" />
       
       {/* Chakra Petch for the heavy section title */}
-      <h2 class="text-2xl font-display font-bold tracking-tight uppercase glitch-hover text-text-primary">
+      <h2 class="text-2xl font-display font-bold tracking-tight uppercase text-text-primary">
         THEORY_LOGS
       </h2>
     </div>
@@ -40,13 +40,13 @@ import HardwareNode from './ui/HardwareNode.astro';
   {/* THE DATA GRID */}
   <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
     {COURSEWORK.map((section) => (
-      <div class="border border-industrial bg-surface rounded-sm p-6 relative group hover:border-accent transition-all duration-300 overflow-hidden">
+      <div class="border border-[var(--color-border-subtle)] bg-surface rounded-sm p-6 relative group hover:border-accent transition-all duration-300 overflow-hidden">
         
         {/* Subtle background glow on hover */}
         <div class="absolute inset-0 bg-accent/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
 
         {/* CLUSTER TITLE */}
-        <h3 class="font-mono text-sm text-accent mb-4 border-b border-industrial/50 pb-3 relative z-10 uppercase tracking-widest">
+        <h3 class="font-mono text-sm text-accent mb-4 border-b border-[var(--color-border-subtle)]/50 pb-3 relative z-10 uppercase tracking-widest">
           // {section.cluster}
         </h3>
         
@@ -54,7 +54,7 @@ import HardwareNode from './ui/HardwareNode.astro';
         <ul class="flex flex-col gap-3 relative z-10">
           {section.logs.map((log) => (
             <li class="flex items-start gap-2 group/item">
-              <span class="font-mono text-industrial group-hover/item:text-accent transition-colors mt-0.5 text-xs">
+              <span class="font-mono text-text-secondary group-hover/item:text-accent transition-colors mt-0.5 text-xs">
                 {">>"}
               </span>
               <span class="font-sans text-sm text-text-primary group-hover/item:text-text-primary transition-colors leading-tight">

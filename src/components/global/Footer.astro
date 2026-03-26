@@ -5,12 +5,12 @@ import { FOOTER } from "../../data/footer.js";
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class="w-full border-t border-industrial bg-void mt-32 py-8 px-6 lg:px-32">
+<footer class="w-full border-t border-[var(--color-border-subtle)] bg-void mt-32 py-8 px-6 lg:px-32">
   <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
     
     {/* System Status Readout */}
     <div class="flex items-center gap-3">
-      <div class="w-2 h-2 rounded-full bg-accent opacity-50"></div>
+      <div class="w-2 h-2 rounded-full bg-accent animate-pulse"></div>
       <p class="font-mono text-xs text-text-secondary uppercase tracking-widest">
         {FOOTER.statusText}
       </p>

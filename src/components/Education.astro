@@ -19,7 +19,7 @@ import HardwareNode from './ui/HardwareNode.astro';
       <HardwareNode class="text-accent hidden lg:block relative z-10 mr-4 bg-void" />
       
       {/* Display Font (Chakra Petch) */}
-      <h2 class="text-2xl font-display font-bold tracking-tight uppercase glitch-hover text-text-primary">
+      <h2 class="text-2xl font-display font-bold tracking-tight uppercase text-text-primary">
         CREDENTIALS
       </h2>
     </div>
@@ -40,7 +40,7 @@ import HardwareNode from './ui/HardwareNode.astro';
   {/* THE DATA GRID */}
   <div class="flex flex-col gap-6">
     {EDUCATION.map((edu) => (
-      <div class="bg-surface border border-industrial p-6 rounded-sm relative group overflow-hidden hover:border-accent transition-all duration-300">
+      <div class="bg-surface border border-[var(--color-border-subtle)] p-6 rounded-sm relative group overflow-hidden hover:border-accent transition-all duration-300">
         
         {/* Decorative active-state line - Upgraded to glow purple on hover */}
         <div class="absolute left-0 top-0 bottom-0 w-1 bg-accent/20 group-hover:bg-accent transition-colors duration-300 shadow-[0_0_8px_var(--color-accent)] opacity-0 group-hover:opacity-100"></div>
@@ -52,7 +52,7 @@ import HardwareNode from './ui/HardwareNode.astro';
             
             {/* Chakra Petch for the degrees to give them heavy physical weight */}
             {edu.degrees.map((degree) => (
-              <h3 class="text-xl font-display font-bold tracking-wide text-alert group-hover:text-accent transition-colors uppercase">
+              <h3 class="text-xl font-display font-bold tracking-wide text-text-primary group-hover:text-accent transition-colors uppercase">
                 {degree}
               </h3>
             ))}
@@ -62,11 +62,11 @@ import HardwareNode from './ui/HardwareNode.astro';
           </div>
           
           <div class="text-left md:text-right flex flex-col items-start md:items-end">
-            <p class="font-mono text-xs text-text-primary bg-industrial/20 border border-industrial/50 px-2 py-1 inline-block rounded-sm mb-2 uppercase">
+            <p class="font-mono text-xs text-text-primary bg-industrial/20 border border-[var(--color-border-subtle)]/50 px-2 py-1 inline-block rounded-sm mb-2 uppercase">
               {edu.status}
             </p>
             {/* Telemetry Blue for time/date data */}
-            <p class="font-mono text-sm text-telemetry block uppercase tracking-widest">{edu.date}</p>
+            <p class="font-mono text-sm text-text-secondary block uppercase tracking-widest">{edu.date}</p>
           </div>
         </div>
 
@@ -76,7 +76,7 @@ import HardwareNode from './ui/HardwareNode.astro';
         </p>
 
         {/* Dynamic metrics grid (Academic Standing, Honors, etc.) */}
-        <div class="flex flex-wrap gap-x-8 gap-y-4 border-t border-industrial/50 pt-6 mt-auto">
+        <div class="flex flex-wrap gap-x-8 gap-y-4 border-t border-[var(--color-border-subtle)]/50 pt-6 mt-auto">
           {edu.metrics.map((metric) => (
             <div class="group/metric">
               {/* Labels stay dim until you hover over the specific metric */}

@@ -73,7 +73,7 @@ function toggleUX(state, dom) {
     dom.navButtons?.classList.remove('nav-active');
   } else {
     stopAuto(state);
-    dom.btnText.textContent = '[ MANUAL_OVERRIDE ]';
+    dom.btnText.textContent = '[ MANUAL_OVERRIDE | CLICK_TO_RESUME ]';
     dom.toggleBtn.classList.replace('text-accent', 'text-text-primary');
     dom.toggleBtn.classList.replace('border-accent/30', 'border-industrial');
     dom.statusDot.classList.replace('bg-accent', 'bg-text-primary');
@@ -124,7 +124,7 @@ function scrollNext(state, dom) {
 }
 
 function startAuto(state, dom) {
-  const interval = setInterval(() => scrollNext(state, dom), 4000);
+  const interval = setInterval(() => scrollNext(state, dom), 6000);
   state.autoScrollInterval = interval;
 }
 

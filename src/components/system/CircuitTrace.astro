@@ -10,9 +10,16 @@
   {/* "Active Signal Line" */}
   <div 
     id="main-bus-trace" 
-    class="absolute left-1/2 top-0 w-[2px] bg-telemetry -translate-x-1/2 origin-top shadow-[0_0_8px_var(--color-telemetry)]"
-    style="transform: scaleY(0);"
-  ></div>
+    class="absolute left-1/2 top-0 w-[2px] bg-accent -translate-x-1/2 origin-top"
+    style="transform: scaleY(0); box-shadow: 0 0 8px var(--color-accent-glow), 0 0 16px var(--color-accent-glow);"
+></div>
+
+{/* "Leading Node Dot" */}  
+<div
+  id="main-bus-node"
+  class="absolute left-1/2 w-2 h-2 rounded-full bg-accent -translate-x-1/2 -translate-y-1/2"
+  style="top: 0%; box-shadow: 0 0 6px var(--color-accent-glow-strong);"
+></div>
   
   {/* Bottom "Ground Node" */}
   <div class="absolute left-1/2 bottom-0 w-4 h-1 bg-industrial -translate-x-1/2"></div>
@@ -22,13 +29,15 @@
 <script>
   const updateTrace = () => {
     const trace = document.getElementById('main-bus-trace');
+    const node = document.getElementById('main-bus-node');
     if (!trace) return;
-    
+
     const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
     if (scrollableHeight <= 0) return;
     
     const progress = window.scrollY / scrollableHeight;
     trace.style.transform = `translateX(-50%) scaleY(${progress})`;
+    if (node) node.style.top = `${progress * 100}%`;
   };
 
   window.addEventListener('scroll', updateTrace, { passive: true });

@@ -3,7 +3,10 @@
 const { class: className } = Astro.props;
 ---
 
-<svg width="16" height="16" viewBox="0 0 16 16" fill="none" class={className}>
+<svg 
+  width="16" height="16" viewBox="0 0 16 16" fill="none" class={className}
+  style="filter: drop-shadow(0 0 4px var(--color-accent-glow));"
+>
   {/* Outer technical dashed ring */}
   <circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5" stroke-dasharray="2 2"/>
   {/* Inner solid data point */}

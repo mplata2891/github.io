@@ -3,7 +3,7 @@
 
 const mobileBtn = [
   "prev-btn sm:hidden absolute z-10 top-1/2 -translate-y-1/2",
-  "px-2 py-6 bg-void/90 border border-industrial text-text-secondary",
+  "px-2 py-6 bg-void/90 border border-[var(--color-border-subtle)] text-text-secondary",
   "hover:text-accent hover:border-accent backdrop-blur-sm transition-all"
 ].join(" ");
 
@@ -39,7 +39,7 @@ const desktopBtn = [
   {/* 2. DESKTOP HARDWARE CONTROLS (Hidden on Mobile) */}
   <div class:list={[
     "hidden sm:flex flex-row justify-between items-center gap-4",
-    "mt-2 border-t border-industrial pt-4"
+    "mt-2 border-t border-[var(--color-border-subtle)] pt-4"
   ]}>
     
     {/* Directional Nav (Hidden during Auto-Scroll) */}

@@ -3,14 +3,12 @@
 import { Code } from 'astro:components';
 const { project } = Astro.props;
 
-const textureUrl = 
-  "https://www.transparenttextures.com/patterns/carbon-fibre.png";
-
 // Style Abstractions
 const baseCardStyle = [
-  "border border-industrial p-8 rounded-sm group relative flex flex-col",
-  "hover:border-accent transition-all duration-300 overflow-hidden bg-surface",
-  project.span // Injects md:col-span-2 or col-span-1 dynamically
+  "border border-[var(--color-border-subtle)] p-8 card-clip group relative flex flex-col",
+  "hover:border-accent hover:shadow-[0_0_20px_var(--color-accent-glow)]",
+  "transition-all duration-300 overflow-hidden bg-surface",
+  project.span
 ].join(" ");
 
 const categoryStyle = [
@@ -18,7 +16,7 @@ const categoryStyle = [
 ].join(" ");
 
 const statusStyle = [
-  "font-mono text-xs text-text-primary bg-industrial/20 px-2 py-1 rounded-sm border border-industrial uppercase"
+  "font-mono text-xs text-text-primary bg-industrial/20 px-2 py-1 rounded-sm border border-[var(--color-border-subtle)] uppercase"
 ].join(" ");
 
 // DISPLAY FONT (Chakra Petch) for the heavy project title
@@ -31,10 +29,7 @@ const titleStyle = [
 <div class={baseCardStyle}>
   
   {/* The Cyberpunk Carbon Fiber Texture Overlay */}
-  <div 
-    class="absolute inset-0 opacity-[0.03] pointer-events-none"
-    style={`background-image: url('${textureUrl}')`}
-  ></div>
+  <div class="absolute inset-0 pointer-events-none bg-grid"></div>
 
   <div class="relative z-10 flex flex-col h-full">
     
@@ -80,20 +75,20 @@ const titleStyle = [
           <h4 class="font-mono text-sm text-text-secondary mb-2">// TECHNICAL_SUBSYSTEMS</h4>
           
           {project.subsystems.map((sub) => (
-            <details class="border border-industrial bg-void rounded-sm group/accordion overflow-hidden">
+            <details class="border border-[var(--color-border-subtle)] bg-void rounded-sm group/accordion overflow-hidden">
               <summary class="font-mono text-xs text-text-primary px-4 py-3 cursor-pointer select-none hover:text-accent hover:bg-surface-highlight transition-colors flex justify-between items-center">
                 <span>[+] {sub.name}</span>
               </summary>
               
-              <div class="p-4 border-t border-industrial flex flex-col gap-4 bg-surface/50">
+              <div class="p-4 border-t border-[var(--color-border-subtle)] flex flex-col gap-4 bg-surface/50">
                 <p class="font-sans text-sm text-text-secondary leading-relaxed">
                   {sub.description}
                 </p>
                 
                 {/* Embedded Code Block */}
-                <div class="bg-[#282a36] p-4 rounded-sm border border-industrial max-h-64 overflow-y-auto">
+                <div class="bg-[#1e1e2e] p-4 rounded-sm border border-[var(--color-border-subtle)] max-h-64 overflow-y-auto">
                   <div class="font-mono text-xs [&>pre]:!bg-transparent">
-                    <Code code={sub.code} lang={sub.lang} theme="dracula" />
+                    <Code code={sub.code} lang={sub.lang} theme="catppuccin-mocha" />
                   </div>
                 </div>
               </div>
@@ -105,7 +100,7 @@ const titleStyle = [
       {/* Tags */}
       <div class="flex flex-wrap gap-2 mt-auto pt-6">
         {project.tags.map((tag) => (
-          <span class="font-mono text-xs text-text-secondary bg-surface-highlight border border-industrial/50 px-2 py-1 rounded-sm">
+          <span class="font-mono text-xs text-text-secondary bg-surface-highlight border border-[var(--color-border-subtle)]/50 px-2 py-1 rounded-sm">
             #{tag}
           </span>
         ))}
@@ -114,7 +109,7 @@ const titleStyle = [
     
     {/* --- DOCUMENTATION DIRECTORY --- */}
     {project.documents && (
-      <div class="mt-8 pt-6 border-t border-industrial flex flex-col gap-4">
+      <div class="mt-8 pt-6 border-t border-[var(--color-border-subtle)] flex flex-col gap-4">
         <h4 class="font-mono text-sm text-text-secondary">// ATTACHED_ASSETS</h4>
         
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -123,7 +118,7 @@ const titleStyle = [
               href={doc.url} 
               target="_blank" 
               rel="noopener noreferrer" 
-              class="flex flex-col p-3 border border-industrial bg-surface-highlight hover:border-accent hover:bg-accent/5 transition-colors group/doc rounded-sm"
+              class="flex flex-col p-3 border border-[var(--color-border-subtle)] bg-surface-highlight hover:border-accent hover:bg-accent/5 transition-colors group/doc rounded-sm"
             >
               <div class="flex justify-between items-start mb-1">
                 <span class={`font-mono text-[10px] px-1.5 py-0.5 rounded-sm border ${doc.type === 'OFFICIAL_REPORT' ? 'border-accent/50 text-accent' : 'border-text-secondary/50 text-text-secondary'}`}>

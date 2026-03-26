@@ -19,7 +19,7 @@ import HardwareNode from './ui/HardwareNode.astro';
       <HardwareNode class="text-accent hidden lg:block relative z-10 mr-4 bg-void" />
       
       {/* Display Font (Chakra Petch) */}
-      <h2 class="text-2xl font-display font-bold tracking-tight uppercase glitch-hover text-text-primary">
+      <h2 class="text-2xl font-display font-bold tracking-tight uppercase text-text-primary">
         {ABOUT.header}
       </h2>
     </div>
@@ -64,9 +64,9 @@ import HardwareNode from './ui/HardwareNode.astro';
       </div>
 
       {/* RIGHT COLUMN: OFFLINE METRICS */}
-      <div class="flex flex-col gap-6 lg:border-l lg:border-industrial/50 lg:pl-8">
+      <div class="flex flex-col gap-6 lg:border-l lg:border-[var(--color-border-subtle)] lg:pl-8">
         {/* FUNCTIONAL: Telemetry Blue for secondary tracking data */}
-        <p class="font-mono text-sm text-critical tracking-widest uppercase mb-2">
+        <p class="font-mono text-sm text-text-secondary tracking-widest uppercase mb-2">
           // [ OFFLINE_METRICS ]
         </p>
         
@@ -74,7 +74,7 @@ import HardwareNode from './ui/HardwareNode.astro';
           {ABOUT.offline_metrics.map((metric) => (
             <div class="border-b border-industrial/50 pb-4 last:border-0 group/metric">
               {/* Category label lights up purple when hovering over the specific metric */}
-              <p class="font-mono text-xs text-text-secondary uppercase mb-1 group-hover/metric:text-alert transition-colors">
+              <p class="font-mono text-xs text-text-secondary uppercase mb-1 group-hover/metric:text-accent transition-colors">
                 > {metric.category}
               </p>
               <p class="font-sans text-sm text-text-primary leading-relaxed">

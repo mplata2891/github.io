@@ -2,14 +2,18 @@
 // src/components/system/BootScreen.astro
 ---
 
-<div id="boot-screen" class="fixed inset-0 z-[9999] bg-void flex flex-col justify-center p-6 md:p-12 font-mono text-sm md:text-base pointer-events-auto transition-opacity duration-500">
+<div id="boot-screen" class="fixed inset-0 z-[9999] bg-void bg-grid flex flex-col justify-center p-6 md:p-12 font-mono text-sm md:text-base pointer-events-auto transition-opacity duration-500">
   <div class="max-w-3xl w-full mx-auto flex flex-col gap-1">
     
     {/* The container where the logs will be injected */}
     <div id="boot-log" class="flex flex-col gap-1 text-text-secondary"></div>
     
     {/* The active terminal cursor */}
-    <div id="boot-cursor" class="w-3 h-5 bg-phosphor animate-blink mt-2"></div>
+    <div 
+      id="boot-cursor" 
+      class="w-3 h-5 bg-accent animate-blink mt-2"
+      style="box-shadow: 0 0 8px var(--color-accent-glow);"
+    ></div>
     
   </div>
 </div>
@@ -41,7 +45,7 @@
     // 1. Run the boot logs
     for (let i = 0; i < logs.length; i++) {
       const line = document.createElement('div');
-      line.innerHTML = `<span class="text-telemetry">></span> ${logs[i]}`;
+      line.innerHTML = `<span class="text-accent">></span> ${logs[i]}`;
       bootLog.appendChild(line);
       
       await sleep(Math.random() * 200 + 100);
